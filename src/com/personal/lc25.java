@@ -16,6 +16,10 @@ public class lc25 {
             if (b == null) {
                 return head;
             }
+            // 不足 k 个也要反转
+//            if (b == null) {
+//                return reverse(a, b);
+//            }
             b = b.next;
         }
         ListNode newHead = reverse(a, b);
