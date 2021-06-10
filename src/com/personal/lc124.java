@@ -6,7 +6,7 @@ package com.personal;
  * @author liuxiaohan1
  * @date 2021-06-09 19:01
  */
-public class lc142 {
+public class lc124 {
 
     private int res = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
