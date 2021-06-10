@@ -1,5 +1,7 @@
 package com.personal;
 
+import java.util.Stack;
+
 /**
  * 验证二叉搜索树
  *
@@ -8,6 +10,7 @@ package com.personal;
  */
 public class lc98 {
 
+    // 递归
     public boolean isValidBST_1(TreeNode root) {
         return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
@@ -20,6 +23,7 @@ public class lc98 {
         return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
 
+    // 中序遍历
     long pre = Long.MIN_VALUE;
     public boolean isValidBST(TreeNode root) {
         if (root == null) return true;
@@ -27,6 +31,25 @@ public class lc98 {
         if (root.val <= pre) return false;
         pre = root.val;
         return isValidBST(root.right);
+    }
+
+    // 中序非递归
+    public boolean isValidBST_(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        long inOrder = Long.MIN_VALUE;
+        while (!stack.isEmpty() || root!= null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (root.val <= inOrder) {
+                return false;
+            }
+            inOrder = root.val;
+            root = root.right;
+        }
+        return true;
     }
 
 }
