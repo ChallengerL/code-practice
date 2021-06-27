@@ -1,5 +1,7 @@
 package com.personal;
 
+import java.util.Stack;
+
 /**
  * @description: 最长有效括号
  * @author: liuXiaoHan
@@ -7,7 +9,7 @@ package com.personal;
  **/
 public class lc32 {
 
-    public int longestValidParentheses_(String s) {
+    public int longestValidParentheses_1(String s) {
         int max = 0;
         int[] dp = new int[s.length()];
         for (int i = 1; i < s.length(); i++) {
@@ -22,8 +24,53 @@ public class lc32 {
         }
         return max;
     }
-    public int longestValidParentheses(String s) {
+    public int longestValidParentheses_2(String s) {
+        int max = 0;
+        Stack<Integer> stack = new Stack<>();
+        stack.push(-1);
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                stack.push(i);
+            } else {
+                stack.pop();
+                if (stack.isEmpty()) {
+                    stack.push(i);
+                } else {
+                    max = Math.max(max, i - stack.peek());
+                }
+            }
+        }
+        return max;
+    }
 
+    public int longestValidParentheses(String s) {
+        int left = 0, right = 0, max = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+            if (left == right) {
+                max = Math.max(max, left * 2);
+            } else if (right > left) {
+                left = right = 0;
+            }
+        }
+        left = right = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == ')') {
+                right++;
+            } else {
+                left++;
+            }
+            if (left == right) {
+                max = Math.max(max, left * 2);
+            } else if (left > right) {
+                left = right = 0;
+            }
+        }
+        return max;
     }
 
 }
