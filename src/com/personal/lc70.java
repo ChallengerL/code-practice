@@ -1,7 +1,7 @@
 package com.personal;
 
 /**
- * 零钱兑换
+ * 爬楼梯
  * @author liuxiaohan1
  * @date 2021-06-28 3:37 下午
  */
@@ -15,7 +15,11 @@ public class lc70 {
         dp[1] = 1;
         dp[2] = 2;
         for (int i = 3; i <= n ; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
+            if (i % 7 == 0) {
+                dp[i] = 0;
+            } else {
+                dp[i] = dp[i - 1] + dp[i - 2];
+            }
         }
         return dp[n];
     }
