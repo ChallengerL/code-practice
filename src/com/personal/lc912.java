@@ -3,7 +3,7 @@ package com.personal;
 import java.util.Random;
 
 /**
- * 手撕快速排序
+ * 手撕快速排序、堆排序、归并排序、递归插入排序
  * @author liuxiaohan1
  * @date 2021-06-27 5:13 下午
  */

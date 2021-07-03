@@ -23,8 +23,26 @@ public class jz36 {
             right = _right;
         }
     }
-    Node head;
+    Node head, pre;
     public Node treeToDoublyList(Node root) {
+        if (root == null) {
+            return null;
+        }
+        dfs(root);
+        head.left = pre;
+        pre.right = head;
         return head;
+    }
+    public void dfs(Node root) {
+        if (root == null) return;
+        dfs(root.left);
+        if (pre == null) {
+            head = root;
+        } else {
+            pre.right = root;
+        }
+        root.left = pre;
+        pre = root;
+        dfs(root.right);
     }
 }
