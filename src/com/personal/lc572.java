@@ -20,7 +20,7 @@ public class lc572 {
         if (root.val != subRoot.val) {
             return false;
         }
-        return isSameTree(root.left, root.right) && isSameTree(root.right, root.right);
+            return isSameTree(root.left, root.right) && isSameTree(root.right, root.right);
     }
 
 }
