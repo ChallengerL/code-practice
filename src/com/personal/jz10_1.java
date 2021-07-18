@@ -5,7 +5,7 @@ package com.personal;
  * @author liuxiaohan1
  * @date 2021-07-16 11:23 上午
  */
-public class jz10 {
+public class jz10_1 {
 
     public int fib(int n) {
         if (n == 0 || n == 1) {
