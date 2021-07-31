@@ -25,33 +25,19 @@ public class lc912 {
     public int partition(int[] nums, int left, int right) {
         int randomIndex = new Random().nextInt(right - left + 1) + left;
         swap(nums, left, randomIndex);
-
         int pivot = nums[left];
-        int lt = left + 1, gt = right;
-        while (true) {
-            while (lt <= right && nums[lt] < pivot) {
-                lt++;
+        while (left < right) {
+            while (left < right && nums[right] >= pivot) {
+                right--;
             }
-            while (gt > left && nums[gt] > pivot) {
-                gt--;
+            nums[left] = nums[right];
+            while (left < right && nums[left] < pivot) {
+                left++;
             }
-            if (lt >= gt) {
-                break;
-            }
-            swap(nums, lt, gt);
-            lt++;
-            gt--;
+            nums[right] = nums[left];
         }
-//        for (int i = left + 1; i <= right; i++) {
-//            // 和当前位置前面的第一个大于pivot的位置进行交换，保证最后lt的位置之前的值都小于pivot
-//            if (nums[i] < pivot) {
-//                lt++;
-//                swap(nums, i, lt);
-//            }
-//        }
-        // gt的位置一定是小于pivot的
-        swap(nums, left, gt);
-        return gt;
+        nums[left] = pivot;
+        return left;
     }
 
     public void swap(int[] nums, int i, int j) {
