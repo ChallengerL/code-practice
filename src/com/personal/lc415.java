@@ -9,7 +9,7 @@ public class lc415 {
 
     public String addStrings(String nums1, String nums2) {
         int i = nums1.length() - 1, j = nums2.length() - 1, add = 0;
-        StringBuffer res = new StringBuffer();
+        StringBuilder res = new StringBuilder();
         while (i >= 0 || j >= 0 || add != 0) {
             int x = i >= 0 ? nums1.charAt(i) - '0' : 0;
             int y = j >= 0 ? nums2.charAt(j) - '0' : 0;
