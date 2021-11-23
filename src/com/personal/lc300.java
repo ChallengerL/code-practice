@@ -26,7 +26,7 @@ public class lc300 {
     }
 
     // 动态规划 + 二分查找
-    public int lengthOfLIS(int[] nums) {
+    public static int lengthOfLIS(int[] nums) {
         int[] top = new int[nums.length];
         int res = 0;
         for (int num : nums) {
@@ -40,9 +40,16 @@ public class lc300 {
                 }
             }
             top[left] = num;
+            System.out.println(Arrays.toString(top));
             if (left == res) res++;
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{6,3,5,10,11,2,9,14,13,7,4,8,12};
+        int res = lengthOfLIS(nums);
+        System.out.println(res);
     }
 
 }

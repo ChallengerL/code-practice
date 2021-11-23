@@ -1,9 +1,6 @@
 package com.personal;
 
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-
-import java.math.BigInteger;
 import java.util.*;
 
 /**
@@ -14,26 +11,41 @@ import java.util.Scanner;
 
 
 public class Solution {
-    public static int modNum = 1000000000 + 7;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
+        int k = sc.nextInt();
         int[] nums = new int[n];
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-//        System.out.println(list);
-        int count = nums.length;
-        while (--count != 0) {
-            for (int i = 0; i < count; i++) {
-                nums[i] -= nums[i + 1];
-            }
+        int[] res = maxSubsequence(nums, k);
+        for (int re : res) {
+            System.out.print(re);
         }
-        System.out.println(nums[0] % (modNum));
     }
 
+    public static int[] maxSubsequence(int[] nums, int k) {
+        int length = nums.length;
+        int[] stack = new int[k];
+        int top = -1;
+        int remain = length - k;
+        for (int num : nums) {
+            while (top >= 0 && stack[top] < num && remain > 0) {
+                top--;
+                remain--;
+            }
+            if (top < k - 1) {
+                stack[++top] = num;
+            } else {
+                remain--;
+            }
+        }
+        return stack;
+    }
 }
+
 
 
 //
